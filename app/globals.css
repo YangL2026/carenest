@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: "Inter", sans-serif;
+}
+
+body {
+  background: #F8FAFC;
+  color: #1E293B;
+  font-family: "Inter", system-ui, sans-serif;
+}
