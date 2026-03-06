@@ -236,10 +236,11 @@ CREATE TABLE push_subscriptions (
 
 ## CURRENT STATUS
 
-**Phase:** Not started
-**Last completed:** Project planning and market research
+**Phase:** Prototype — Track 1 in progress
+**Last completed:** Static Today screen with hardcoded data for 2 dependents (Dad blue, Mom green), 5 medications grouped by time of day (Morning/Evening), tappable checkboxes with completion progress bar, mobile-responsive Tailwind styling, running on Next.js dev server, viewable on phone via local network
+**Tech confirmed working:** Next.js 16, React 19, Tailwind CSS v4, App Router, dev server, mobile browser rendering
 **Blockers:** None
-**Next step:** Decide whether to start with Track 1 (prototype) or Track 2 (Phase 1 tutorial)
+**Next step:** Connect Supabase database so medications and check-offs persist across sessions, then add ability to add/edit dependents and medications through the UI (no more hardcoded data)
 
 ---
 
@@ -297,6 +298,7 @@ care-command/
 | 2026-03-05 | Push notifications, not SMS | $0 ongoing cost, sufficient for personal use |
 | 2026-03-05 | JavaScript, not TypeScript | Learning project, reduce complexity |
 | 2026-03-05 | Prototype-first, then tutorial rebuild | De-risk architecture before investing in structured learning |
+| 2026-03-05 | Used Claude Code for prototype scaffolding | Fast, effective, confirmed architecture works in one session |
 
 ---
 
