@@ -54,13 +54,25 @@ instead of "one caregiver + many patients"
 
 | Layer | Technology | Version | Notes |
 |-------|-----------|---------|-------|
-| Framework | Next.js | 14+ (App Router) | NOT Pages Router |
+| Framework | Next.js | 16.x (16.1.6 confirmed) | NOT Pages Router |
 | Language | JavaScript (not TypeScript for simplicity) | ES2022+ | May migrate to TS later |
 | Styling | Tailwind CSS | 3.x | Mobile-first responsive |
 | Database | Supabase | Free tier | Postgres, 500MB limit |
 | Hosting | Vercel | Free tier | Includes cron jobs |
 | Notifications | Web Push API | — | VAPID keys, no Twilio/SMS |
 | Package manager | npm | — | Not yarn, not pnpm |
+
+## VERSION MANAGEMENT
+
+- The source of truth for all dependency versions is package.json and package-lock.json,
+  NOT this document. Always check package.json before writing code that depends on
+  framework-specific APIs.
+- package-lock.json must always be committed to Git. Never add it to .gitignore.
+- Use `npm ci` (not `npm install`) when setting up on a new machine or in CI/CD.
+- Do not upgrade Next.js major versions without reading the official migration guide
+  and testing on a branch first.
+- Current known version-specific behaviors:
+  - Next.js 16: params in page components is a Promise, must unwrap with React.use()
 
 **Explicitly NOT using:**
 - TypeScript (keep it simple for learning)
@@ -236,11 +248,15 @@ CREATE TABLE push_subscriptions (
 
 ## CURRENT STATUS
 
-**Phase:** Prototype — Track 1 in progress
-**Last completed:** Static Today screen with hardcoded data for 2 dependents (Dad blue, Mom green), 5 medications grouped by time of day (Morning/Evening), tappable checkboxes with completion progress bar, mobile-responsive Tailwind styling, running on Next.js dev server, viewable on phone via local network
-**Tech confirmed working:** Next.js 16, React 19, Tailwind CSS v4, App Router, dev server, mobile browser rendering
+**Phase:** Phase 1 complete, starting Phase 2
+**Last completed:**
+- Phase 0: Database schema reset — all 7 tables created in Supabase matching HANDOFF.md schema exactly
+- Phase 1: Today screen built and tested — all components working (MedCard, TimeBlock, TaskCard, BottomNav, FAB)
+- Bug fix: params unwrapped with React.use() for Next.js 16 compatibility across all page files
+**What exists in Supabase:** All 7 tables (dependents, medications, med_logs, tasks, procedures, procedure_steps, push_subscriptions) with test data (2 dependents, 2 medications)
+**What exists on GitHub:** Phase 1 frontend code — Today screen fully functional
 **Blockers:** None
-**Next step:** Connect Supabase database so medications and check-offs persist across sessions, then add ability to add/edit dependents and medications through the UI (no more hardcoded data)
+**Next step:** Phase 2 — Add Medication flow
 
 ---
 
@@ -299,7 +315,13 @@ care-command/
 | 2026-03-05 | JavaScript, not TypeScript | Learning project, reduce complexity |
 | 2026-03-05 | Prototype-first, then tutorial rebuild | De-risk architecture before investing in structured learning |
 | 2026-03-05 | Used Claude Code for prototype scaffolding | Fast, effective, confirmed architecture works in one session |
-
+| 2026-03-05 | Supabase connected, 3 tables created | dependents, medications, med_logs all working |
+| 2026-03-05 | Prototype v1 built with Claude Code | Working but UX needs human-driven redesign |
+| 2026-03-05 | Will use Codex for v2 frontend rebuild | Claude Code good for scaffolding, Codex may be stronger for bug-free code generation |
+| 2026-03-05 | Supabase backend stays, only frontend rebuilds | Database, tables, seed data all reusable regardless of who writes the frontend |
+| 2026-03-10 | Next.js version is 16.1.6, not 14 | package.json is source of truth; params requires React.use() |
+| 2026-03-10 | Phase 1 built by Codex, reviewed by Claude | Claude as conductor, Codex as engineer, Yang as liaison |
+| 2026-03-10 | RLS disabled on all tables for now | Personal-use app with household key access; revisit if app goes public |
 ---
 
 ## ABOUT THE BUILDER
