@@ -248,15 +248,15 @@ CREATE TABLE push_subscriptions (
 
 ## CURRENT STATUS
 
-**Phase:** Phase 1 complete, starting Phase 2
+**Phase:** Phase 2 complete, starting Phase 3
 **Last completed:**
-- Phase 0: Database schema reset — all 7 tables created in Supabase matching HANDOFF.md schema exactly
-- Phase 1: Today screen built and tested — all components working (MedCard, TimeBlock, TaskCard, BottomNav, FAB)
-- Bug fix: params unwrapped with React.use() for Next.js 16 compatibility across all page files
-**What exists in Supabase:** All 7 tables (dependents, medications, med_logs, tasks, procedures, procedure_steps, push_subscriptions) with test data (2 dependents, 2 medications)
-**What exists on GitHub:** Phase 1 frontend code — Today screen fully functional
+- Phase 0: Database schema reset — all 7 tables created in Supabase
+- Phase 1: Today screen built and tested — all components working
+- Phase 2: Add Medication flow built and tested — 4-step guided flow with Supabase save, med_log generation, inline dependent creation
+- Bug fix: params unwrapped with React.use() for Next.js 16 compatibility
+- Polish: stronger selection states, nested sub-options, back button on all steps
 **Blockers:** None
-**Next step:** Phase 2 — Add Medication flow
+**Next step:** Phase 3 — People list + Dependent Detail screen
 
 ---
 
@@ -322,6 +322,9 @@ care-command/
 | 2026-03-10 | Next.js version is 16.1.6, not 14 | package.json is source of truth; params requires React.use() |
 | 2026-03-10 | Phase 1 built by Codex, reviewed by Claude | Claude as conductor, Codex as engineer, Yang as liaison |
 | 2026-03-10 | RLS disabled on all tables for now | Personal-use app with household key access; revisit if app goes public |
+| 2026-03-11 | Add Medication selected state strengthened | Blue-50 too subtle; added bg-blue-100 + checkmark icon for clarity |
+| 2026-03-11 | Timing sub-options visually nested | Time pickers indented under parent button to avoid sibling confusion |
+| 2026-03-11 | Back button works on all steps including Step 4 | User could get stuck on summary screen without it |
 ---
 
 ## ABOUT THE BUILDER
